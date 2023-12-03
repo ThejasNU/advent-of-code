@@ -1,17 +1,19 @@
-package main
+package day2
 
 import (
 	"fmt"
 	"unicode"
+
+	"github.com/ThejasNU/advent-of-code/helpers"
 )
 
 func Day2_2() {
 
-	input := ReadInput("day2_input.txt")
+	input := helpers.ReadInput("./day2/day2_input.txt")
 	ans := 0
 
 	for i := 1; i < 101; i++ {
-		red,green,blue := 0,0,0
+		red, green, blue := 0, 0, 0
 		s := input[i-1]
 		var j int
 		if i < 10 {
@@ -29,20 +31,20 @@ func Day2_2() {
 			}
 			j++
 
-			switch s[j]{
+			switch s[j] {
 			case 'r':
-				red=max(red,num)
-				j+=5
+				red = max(red, num)
+				j += 5
 			case 'g':
-				green=max(green,num)
-				j+=7
+				green = max(green, num)
+				j += 7
 			case 'b':
-				blue=max(blue,num)
-				j+=6
+				blue = max(blue, num)
+				j += 6
 			}
 		}
 
-		ans+=red*green*blue
+		ans += red * green * blue
 	}
 
 	fmt.Println(ans)

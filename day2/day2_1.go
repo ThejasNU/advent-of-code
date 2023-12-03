@@ -1,13 +1,15 @@
-package main
+package day2
 
 import (
 	"fmt"
 	"unicode"
+
+	"github.com/ThejasNU/advent-of-code/helpers"
 )
 
 func Day2_1() {
 
-	input := ReadInput("day2_input.txt")
+	input := helpers.ReadInput("./day2/day2_input.txt")
 	red, green, blue := 12, 13, 14
 	ans := 0
 
