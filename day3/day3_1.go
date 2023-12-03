@@ -11,11 +11,28 @@ import (
 
 func Day3_1() {
 	input := helpers.ReadInput("./day3/day3_input.txt")
-	m, n := len(input), len(input[0])
-	var numberIdxs [][]int
-
+	
 	symbolIdxs:= getSymbolsIdx(input)
+	numberIdxs:=getNumberIdxs(input,symbolIdxs)
+	printSum(input, numberIdxs)
+}
 
+func getSymbolsIdx(matrix []string) [][]int {
+	var symbolIdxs [][]int
+	for i, row := range matrix {
+		for j, char := range row {
+			asciiVal := int(char)
+			if asciiVal != 46 && (asciiVal > 57 || asciiVal < 48) {
+				symbolIdxs = append(symbolIdxs, []int{i, j})
+			}
+		}
+	}
+	return symbolIdxs
+}
+
+func getNumberIdxs(input []string,symbolIdxs [][]int) [][]int{
+	m,n:=len(input),len(input[0])
+	var numberIdxs [][]int
 	for _,idx := range symbolIdxs {
 		row, col := idx[0], idx[1]
 
@@ -54,25 +71,12 @@ func Day3_1() {
 		if row-1 >= 0 && unicode.IsDigit(rune(input[row-1][col])) {
 			numberIdxs = append(numberIdxs, []int{row - 1, col})
 		}
-
 	}
-	getNumbers(input, numberIdxs)
+
+	return numberIdxs
 }
 
-func getSymbolsIdx(matrix []string) [][]int {
-	var symbolIdxs [][]int
-	for i, row := range matrix {
-		for j, char := range row {
-			asciiVal := int(char)
-			if asciiVal != 46 && (asciiVal > 57 || asciiVal < 48) {
-				symbolIdxs = append(symbolIdxs, []int{i, j})
-			}
-		}
-	}
-	return symbolIdxs
-}
-
-func getNumbers(matrix []string, indexes [][]int) {
+func printSum(matrix []string, indexes [][]int) {
 	sum := 0
 	rows,cols:=len(matrix),len(matrix[0])
 	vis := make([][]int, rows)
