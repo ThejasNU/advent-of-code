@@ -2,6 +2,7 @@ package day4
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/ThejasNU/advent-of-code/helpers"
 )
@@ -19,14 +20,9 @@ func Day4_2(){
 
 func getCount(nums string,winMap map[string]int) int{
 	count:=0
-	for i:=0;i<len(nums);i+=3{
-		var num string
-		if nums[i]==' '{
-			num=string(nums[i+1])
-		} else{
-			num=string(nums[i])+string(nums[i+1])
-		}
-
+	numsList := strings.Split(nums," ")
+	
+	for _,num := range numsList{
 		if _,ok:=winMap[num];ok{
 			count++
 		}
@@ -36,8 +32,6 @@ func getCount(nums string,winMap map[string]int) int{
 }
 
 func printAns(pointsList []int,numCards int){
-	fmt.Println(numCards)
-	fmt.Println(pointsList)
 	cardsMap := make(map[int] int)
 	for i:=1;i<=numCards;i++{
 		cardsMap[i]=1
