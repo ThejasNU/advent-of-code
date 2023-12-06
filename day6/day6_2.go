@@ -28,5 +28,5 @@ func Day6_2(){
 	}
 	dist,_:=strconv.ParseInt(finalDistStr,10,64)
 
-	fmt.Println(getNumPossible(time,dist))
+	fmt.Println(getNumPossibleInConstantTime(time,dist))
 }
