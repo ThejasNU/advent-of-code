@@ -62,8 +62,8 @@ t²-nt+d=0
 */
 
 func getNumPossibleInConstantTime(time int64, dist int64) int64 {
-	firstPos := int64(math.Ceil((float64(time) - math.Sqrt(math.Pow(float64(time), 2)-float64(4*dist)))/2))
-	lastPos := int64(math.Floor((float64(time) + math.Sqrt(math.Pow(float64(time), 2)-float64(4*dist)))/2))
+	firstPos := int64(math.Ceil((float64(time) - math.Sqrt(math.Pow(float64(time), 2)-float64(4*dist))) / 2))
+	lastPos := int64(math.Floor((float64(time) + math.Sqrt(math.Pow(float64(time), 2)-float64(4*dist))) / 2))
 
 	return lastPos - firstPos + 1
 }

@@ -11,9 +11,9 @@ import (
 
 func Day3_1() {
 	input := helpers.ReadInput("./day3/day3_input.txt")
-	
-	symbolIdxs:= getSymbolsIdx(input)
-	numberIdxs:=getNumberIdxs(input,symbolIdxs)
+
+	symbolIdxs := getSymbolsIdx(input)
+	numberIdxs := getNumberIdxs(input, symbolIdxs)
 	printSum(input, numberIdxs)
 }
 
@@ -30,10 +30,10 @@ func getSymbolsIdx(matrix []string) [][]int {
 	return symbolIdxs
 }
 
-func getNumberIdxs(input []string,symbolIdxs [][]int) [][]int{
-	m,n:=len(input),len(input[0])
+func getNumberIdxs(input []string, symbolIdxs [][]int) [][]int {
+	m, n := len(input), len(input[0])
 	var numberIdxs [][]int
-	for _,idx := range symbolIdxs {
+	for _, idx := range symbolIdxs {
 		row, col := idx[0], idx[1]
 
 		if col-1 >= 0 {
@@ -78,7 +78,7 @@ func getNumberIdxs(input []string,symbolIdxs [][]int) [][]int{
 
 func printSum(matrix []string, indexes [][]int) {
 	sum := 0
-	rows,cols:=len(matrix),len(matrix[0])
+	rows, cols := len(matrix), len(matrix[0])
 	vis := make([][]int, rows)
 	for i := 0; i < rows; i++ {
 		vis[i] = make([]int, cols)
@@ -88,18 +88,18 @@ func printSum(matrix []string, indexes [][]int) {
 	}
 	for _, idx := range indexes {
 		row, col := idx[0], idx[1]
-		if vis[row][col]==1{
+		if vis[row][col] == 1 {
 			continue
 		}
-		vis[row][col]=1
+		vis[row][col] = 1
 		l, r := col-1, col+1
 		for l >= 0 && unicode.IsDigit(rune(matrix[row][l])) {
-			vis[row][l]=1
+			vis[row][l] = 1
 			l--
 		}
-		
+
 		for r < len(matrix[0]) && unicode.IsDigit(rune(matrix[row][r])) {
-			vis[row][r]=1
+			vis[row][r] = 1
 			r++
 		}
 

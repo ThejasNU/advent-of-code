@@ -7,6 +7,3 @@ import (
 func main() {
 	day6.Day6_2()
 }
-
-
-

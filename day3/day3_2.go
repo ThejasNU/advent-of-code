@@ -13,7 +13,7 @@ func Day3_2() {
 	input := helpers.ReadInput("./day3/day3_input.txt")
 	starIdxs := getStarIdxs(input)
 	gearsIdxs := getGears(input, starIdxs)
-	printAns(input,gearsIdxs)
+	printAns(input, gearsIdxs)
 }
 
 func getStarIdxs(matrix []string) [][]int {
