@@ -212,7 +212,7 @@ func Day10_2() {
 
 	/* Imagine a circle if a point is inside, if we move diagonally it will cross the border only once
 	If it is outside, it will cross border 0 times or 2 times, this trick is applicable for all closed shapes
-	Edge case is tangent,7 and L means we are tangent to the closed path, so better to ignore it instead of writing new condition and writing 2
+	Edge case is tangent,at 7 or L means we are tangent to the closed path, so better to ignore it instead of writing new condition and adding 2
 	*/
 	insideCount := 0
 	for i := 0; i < m; i++ {
