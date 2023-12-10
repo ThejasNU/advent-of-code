@@ -210,58 +210,32 @@ func Day10_2() {
 		}
 	}
 
-	//making the question similar to number of enclaves leetcode question
-	grid := make([][]int, m)
-	for i := range grid {
-		grid[i] = make([]int, n)
-		for j := range grid[i] {
-			if !pipeVisited[i][j] {
-				grid[i][j] = 1
-			}
-		}
-	}
-
-	visited := make([][]bool, m)
-	for i := range visited {
-		visited[i] = make([]bool, n)
-	}
-
-	ans := 0
+	/* Imagine a circle if a point is inside, if we move diagonally it will cross the border only once
+	If it is outside, it will cross border 0 times or 2 times, this trick is applicable for all closed shapes
+	Edge case is tangent,7 and L means we are tangent to the closed path, so better to ignore it instead of writing new condition and writing 2
+	*/
+	insideCount := 0
 	for i := 0; i < m; i++ {
 		for j := 0; j < n; j++ {
-			if !visited[i][j] && grid[i][j] == 1 {
-				flag := false
-				tilesCount := 0
-				dfs(i, j, grid, visited, &flag, &tilesCount)
-				if !flag {
-					fmt.Println(i,j,tilesCount)
-					ans += tilesCount
+			if !pipeVisited[i][j] {
+				borderCrosses := 0
+				r, c := i, j
+
+				for r < m && c < n {
+					curTile := rune(input[r][c])
+					if pipeVisited[r][c] && curTile != '7' && curTile != 'L' {
+						borderCrosses++
+					}
+					r++
+					c++
+				}
+
+				if borderCrosses%2 == 1 {
+					insideCount++
 				}
 			}
 		}
 	}
-	fmt.Println(ans)
-}
 
-func dfs(i int, j int, grid [][]int, visited [][]bool, flag *bool, tilesCount *int) {
-	m, n := len(grid), len(grid[0])
-	if i == 0 || j == 0 || i == m-1 || j == n-1 {
-		*flag = true
-	}
-
-	visited[i][j] = true
-	*tilesCount++
-
-	if i-1 >= 0 && grid[i-1][j] == 1 && !visited[i-1][j] {
-		dfs(i-1, j, grid, visited, flag, tilesCount)
-	}
-	if i+1 < m && grid[i+1][j] == 1 && !visited[i+1][j] {
-		dfs(i+1, j, grid, visited, flag, tilesCount)
-	}
-	if j-1 >= 0 && grid[i][j-1] == 1 && !visited[i][j-1] {
-		dfs(i, j-1, grid, visited, flag, tilesCount)
-	}
-	if j+1 < n && grid[i][j+1] == 1 && !visited[i][j+1] {
-		dfs(i, j+1, grid, visited, flag, tilesCount)
-	}
+	fmt.Println(insideCount)
 }
