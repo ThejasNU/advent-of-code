@@ -1,7 +1,7 @@
 package main
 
-import "github.com/ThejasNU/advent-of-code/day11"
+import "github.com/ThejasNU/advent-of-code/day12"
 
 func main() {
-	day11.Day11_2()
+	day12.Day12_2()
 }
