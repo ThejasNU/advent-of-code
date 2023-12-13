@@ -23,3 +23,13 @@ func ReadInput(inputFile string) []string {
 
 	return fileLines
 }
+
+func ReadInputAsString(inputFile string) string {
+	content, err := os.ReadFile(inputFile)
+	
+	if err!=nil{
+		log.Fatal(err)
+	}
+	inputStr:=string(content)
+	return inputStr
+}
